@@ -67,20 +67,32 @@ function speakText(text, lang = 'en-US') {
     state.synth.cancel();
     
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang; // Thiết lập rõ ràng tiếng Anh để điện thoại không tự ý dùng giọng tiếng Việt
     
     // Try to find matching voice
     const voices = state.synth.getVoices();
     let selectedVoice = null;
     
+    // Chuẩn hóa tìm kiếm giọng đọc tiếng Anh
+    const searchLang = lang.toLowerCase().replace('_', '-');
     if (state.aiVoice === 'google-us') {
-        selectedVoice = voices.find(v => v.lang.includes('en-US') && v.name.includes('Google'));
+        selectedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').includes('en-us') && v.name.includes('Google'));
     } else if (state.aiVoice === 'google-gb') {
-        selectedVoice = voices.find(v => v.lang.includes('en-GB') && v.name.includes('Google'));
+        selectedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').includes('en-gb') && v.name.includes('Google'));
     }
     
-    // Fallback to any English voice
+    // Fallback 1: Tìm bất kỳ giọng en-US hoặc en-GB tương ứng trên máy
     if (!selectedVoice) {
-        selectedVoice = voices.find(v => v.lang.startsWith(lang));
+        if (state.aiVoice === 'google-us') {
+            selectedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').includes('en-us'));
+        } else if (state.aiVoice === 'google-gb') {
+            selectedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').includes('en-gb'));
+        }
+    }
+    
+    // Fallback 2: Tìm giọng tiếng Anh bất kỳ phù hợp với prefix (en)
+    if (!selectedVoice) {
+        selectedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith(searchLang.split('-')[0]));
     }
     
     if (selectedVoice) {
@@ -94,7 +106,8 @@ function speakText(text, lang = 'en-US') {
     utterance.onend = () => {
         updateAvatarStatus('ready');
     };
-    utterance.onerror = () => {
+    utterance.onerror = (e) => {
+        console.error('TTS Error:', e);
         updateAvatarStatus('ready');
     };
     
