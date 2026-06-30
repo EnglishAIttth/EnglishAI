@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnglishAI - Học Tiếng Anh Từ Mất Gốc Đến Giao Tiếp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Lớp phủ mờ nền khi mở menu trên điện thoại -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="app-container">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-area">
+                <svg class="logo-icon" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span class="logo-text">English<span>AI</span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                    <span>Lộ trình học</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="alphabet">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span>1. Bảng chữ cái</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="ipa">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>2. Phát âm IPA</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="grammar">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>3. Ngữ pháp (Thì)</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="exercises">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.06 23h-12a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h8.38a1 1 0 0 1 .7.3l7.62 7.62a1 1 0 0 1 .3.7V20a3 3 0 0 1-3 3z"></path><path d="M12 11h-4"></path><path d="M12 15h-4"></path><path d="M16 11h-2"></path><path d="M16 15h-2"></path></svg>
+                    <span>4. Làm bài tập</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="communication">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span>5. Giao tiếp thực tế</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="chat">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span>6. AI 1:1 Chat</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="open-settings-btn" class="btn btn-secondary" style="width: 100%;">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    <span>Cài đặt AI</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header (Có nút Menu Hamburger di động) -->
+            <header class="top-header">
+                <button class="menu-toggle-btn" id="menu-toggle-btn" title="Mở danh mục menu">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
+                <h1 id="current-section-title">Lộ trình học tiếng Anh</h1>
+                <div class="user-progress">
+                    <span class="progress-label">Tiến trình học:</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="overall-progress" style="width: 10%;"></div>
+                    </div>
+                    <span class="progress-text" id="progress-percentage">10%</span>
+                </div>
+            </header>
+
+            <!-- Tab Content Containers -->
+            <div class="tab-content-wrapper">
+                
+                <!-- Tab: Dashboard -->
+                <section id="dashboard" class="tab-content active">
+                    <div class="welcome-card">
+                        <h2>Chào mừng bạn đến với EnglishAI! 🚀</h2>
+                        <p>Lộ trình học cá nhân hóa giúp bạn đi từ con số 0 (chưa biết gì) đến khi có thể giao tiếp tự tin với người nước ngoài bằng sự hỗ trợ đắc lực của công nghệ AI.</p>
+                    </div>
+
+                    <div class="roadmap">
+                        <!-- Level 1 -->
+                        <div class="roadmap-step completed" data-target="alphabet">
+                            <div class="step-number">1</div>
+                            <div class="step-info">
+                                <h3>Bảng chữ cái & Âm cơ bản</h3>
+                                <p>Học cách đọc 26 chữ cái tiếng Anh chuẩn xác và cách ghép âm đơn giản.</p>
+                                <span class="status-badge">Đang học</span>
+                            </div>
+                        </div>
+                        <!-- Level 2 -->
+                        <div class="roadmap-step" data-target="ipa">
+                            <div class="step-number">2</div>
+                            <div class="step-info">
+                                <h3>Phát âm chuẩn IPA</h3>
+                                <p>Làm chủ 44 âm trong Tiếng Anh (Nguyên âm & Phụ âm). Có AI chấm điểm giọng đọc trực tiếp.</p>
+                                <span class="status-badge">Chưa khóa</span>
+                            </div>
+                        </div>
+                        <!-- Level 3 -->
+                        <div class="roadmap-step" data-target="grammar">
+                            <div class="step-number">3</div>
+                            <div class="step-info">
+                                <h3>Ngữ pháp & 6 Thì cốt lõi</h3>
+                                <p>Nắm chắc các thì thông dụng nhất trong giao tiếp hàng ngày.</p>
+                                <span class="status-badge">Chưa khóa</span>
+                            </div>
+                        </div>
+                        <!-- Level 4 -->
+                        <div class="roadmap-step" data-target="exercises">
+                            <div class="step-number">4</div>
+                            <div class="step-info">
+                                <h3>Luyện tập bài tập dịch & ghép câu</h3>
+                                <p>Xây dựng phản xạ ghép câu đúng ngữ pháp, dịch câu Việt - Anh nhanh chóng.</p>
+                                <span class="status-badge">Chưa khóa</span>
+                            </div>
+                        </div>
+                        <!-- Level 5 -->
+                        <div class="roadmap-step" data-target="chat">
+                            <div class="step-number">5</div>
+                            <div class="step-info">
+                                <h3>Giao tiếp phản xạ 1:1 với AI</h3>
+                                <p>Nói chuyện tự do bằng giọng nói với AI. AI sửa lỗi ngữ pháp và phát âm ngay lập tức.</p>
+                                <span class="status-badge">Chưa khóa</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Alphabet -->
+                <section id="alphabet" class="tab-content">
+                    <p class="section-desc">Click vào từng chữ cái để nghe phát âm, xem ví dụ và luyện đọc.</p>
+                    <div class="alphabet-layout">
+                        <div class="alphabet-grid" id="alphabet-grid-container">
+                            <!-- JS will render A-Z here -->
+                        </div>
+                        <div class="alphabet-detail-panel" id="alphabet-detail">
+                            <div class="empty-state">
+                                <p>Chọn một chữ cái để xem chi tiết bài học</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: IPA -->
+                <section id="ipa" class="tab-content">
+                    <p class="section-desc">Bảng ký tự phiên âm quốc tế (IPA) gồm 44 âm. Hãy học cách phát âm từng âm và luyện đọc với AI.</p>
+                    
+                    <div class="ipa-tabs">
+                        <button class="ipa-tab-btn active" data-ipa-group="vowels">Nguyên âm (Vowels)</button>
+                        <button class="ipa-tab-btn" data-ipa-group="consonants">Phụ âm (Consonants)</button>
+                    </div>
+
+                    <div class="ipa-layout">
+                        <div class="ipa-grid" id="ipa-grid-container">
+                            <!-- JS will render IPA sounds here -->
+                        </div>
+                        <div class="ipa-detail-panel" id="ipa-detail">
+                            <div class="empty-state">
+                                <p>Chọn một âm phiên âm để xem hướng dẫn cách đọc và luyện nói</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Grammar -->
+                <section id="grammar" class="tab-content">
+                    <p class="section-desc">Nắm vững nền tảng cấu trúc câu trong Tiếng Anh thông qua các Thì cốt lõi và các Từ loại cơ bản từ tiểu học đến đại học.</p>
+                    
+                    <div class="ipa-tabs">
+                        <button class="grammar-tab-btn ipa-tab-btn active" data-grammar-group="tenses">Các Thì (Tenses)</button>
+                        <button class="grammar-tab-btn ipa-tab-btn" data-grammar-group="word_classes">Từ Loại (Word Classes)</button>
+                        <button class="grammar-tab-btn ipa-tab-btn" data-grammar-group="asking_questions">Cách Đặt Câu Hỏi (Asking Questions)</button>
+                        <button class="grammar-tab-btn ipa-tab-btn" data-grammar-group="sentence_structures">Cấu Trúc Câu (Sentence Structures)</button>
+                        <button class="grammar-tab-btn ipa-tab-btn" data-grammar-group="idioms_phrasal">Thành ngữ & Cụm từ (Idioms & Phrasals)</button>
+                    </div>
+
+                    <div class="grammar-container" id="grammar-container">
+                        <!-- JS will render tenses or word classes cards here -->
+                    </div>
+                </section>
+
+                <!-- Tab: Exercises -->
+                <section id="exercises" class="tab-content">
+                    <p class="section-desc">Luyện tập phản xạ dựng câu và từ vựng. Đạt điểm cao để mở khóa các mức tiếp theo!</p>
+                    <div class="exercise-card-container" id="exercise-card-container">
+                        <!-- JS will render current exercise here -->
+                    </div>
+                </section>
+
+                <!-- Tab: Communication -->
+                <section id="communication" class="tab-content">
+                    <p class="section-desc">Học các đoạn hội thoại thực tế theo chủ đề. Nghe phát âm chuẩn và luyện nói phản xạ từng câu với AI.</p>
+                    <div class="communication-layout">
+                        <div class="scenarios-sidebar" id="scenarios-sidebar-container">
+                            <!-- JS will render scenarios list here -->
+                        </div>
+                        <div class="scenario-details" id="scenario-details-container">
+                            <div class="empty-state">
+                                <p>Chọn một chủ đề giao tiếp để bắt đầu học hội thoại</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Chat -->
+                <section id="chat" class="tab-content">
+                    <div class="chat-layout">
+                        <!-- Left: Chat Window -->
+                        <div class="chat-window">
+                            <div class="chat-header-bar" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); margin-bottom: 16px; width: 100%;">
+                                <span style="font-size: 13px; color: var(--text-muted); font-weight: 600;">Lịch sử trò chuyện</span>
+                                <button class="btn btn-secondary" id="clear-chat-btn" style="padding: 6px 12px; font-size: 12px; background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); transition: var(--transition);" title="Xóa toàn bộ lịch sử trò chuyện">Xóa lịch sử</button>
+                            </div>
+
+                            <div class="chat-messages" id="chat-messages-container">
+                                <div class="message assistant">
+                                    <div class="msg-bubble">
+                                        Hello! I am your AI English speaking partner. How can I help you practice today? 
+                                        <div class="msg-translation">Chào bạn! Tôi là đối tác luyện nói tiếng Anh bằng AI của bạn. Tôi có thể giúp bạn luyện tập thế nào hôm nay?</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="chat-controls">
+                                <div class="chat-suggestions" id="chat-suggestions"></div>
+                                <div class="voice-status" id="voice-status-text">Microphone đã sẵn sàng</div>
+                                <div class="input-area">
+                                    <button class="control-btn mic-btn" id="chat-mic-btn" title="Nói chuyện qua Micro">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                                            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                                        </svg>
+                                    </button>
+                                    <input type="text" id="chat-input" placeholder="Nhập tin nhắn tiếng Anh của bạn ở đây...">
+                                    <button class="control-btn send-btn" id="chat-send-btn">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Tutor Panel -->
+                        <div class="tutor-panel">
+                            <!-- AI Animated Avatar (Cố định ở trên) -->
+                            <div class="avatar-container">
+                                <div class="avatar-glow"></div>
+                                <div class="hologram-waves"></div>
+                                <svg class="ai-avatar-svg" id="ai-avatar" viewBox="0 0 200 200">
+                                    <!-- Background Glow -->
+                                    <circle cx="100" cy="100" r="90" fill="url(#avatar-bg-grad)" opacity="0.2"/>
+                                    
+                                    <!-- Base Shadow -->
+                                    <ellipse cx="100" cy="180" rx="45" ry="8" fill="rgba(0,0,0,0.15)"/>
+
+                                    <!-- Body (Sways gently) -->
+                                    <g class="avatar-body" style="animation: bodySway 4s ease-in-out infinite; transform-origin: 100px 180px;">
+                                        <!-- Shoulders / Clothes (Navy Blue Blazer with White V-Neck Shirt) -->
+                                        <path d="M55 165 C55 138, 72 132, 100 132 C128 132, 145 138, 145 165 L140 200 L60 200 Z" fill="#1e3a8a"/>
+                                        <path d="M90 132 L100 152 L110 132 Z" fill="#ffffff"/> <!-- V-Neck Shirt -->
+                                        <path d="M85 132 L100 157 L115 132 Z" fill="none" stroke="#3b82f6" stroke-width="1.5"/> <!-- Collar line -->
+
+                                        <!-- Neck (Skin Tone) -->
+                                        <path d="M91 112 L91 135 C91 135, 100 138, 109 135 L109 112 Z" fill="#ffe4e6"/>
+
+                                        <!-- Face (Skin Tone: Soft Pinkish Cream) -->
+                                        <path d="M72 80 C72 50, 128 50, 128 80 C128 110, 120 123, 100 123 C80 123, 72 110, 72 80 Z" fill="#fff1f2" stroke="#fda4af" stroke-width="1"/>
+
+                                        <!-- Blush on Cheeks (Adds friendliness) -->
+                                        <circle cx="82" cy="98" r="5" fill="#f43f5e" opacity="0.25"/>
+                                        <circle cx="118" cy="98" r="5" fill="#f43f5e" opacity="0.25"/>
+
+                                        <!-- Eyes (Large, expressive, animatable) -->
+                                        <g class="avatar-eyes">
+                                            <!-- Left Eye -->
+                                            <g class="avatar-eye left">
+                                                <!-- Eye Outline / Lashes -->
+                                                <path d="M77 82 Q85 76 93 82" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
+                                                <!-- Iris (Beautiful Blue) -->
+                                                <ellipse cx="85" cy="84" rx="5" ry="6" fill="#0284c7"/>
+                                                <!-- Pupil -->
+                                                <circle cx="85" cy="84" r="2.5" fill="#0f172a"/>
+                                                <!-- Highlights -->
+                                                <circle cx="83" cy="82" r="1.3" fill="#ffffff"/>
+                                                <circle cx="87" cy="86" r="0.7" fill="#ffffff"/>
+                                            </g>
+                                            
+                                            <!-- Right Eye -->
+                                            <g class="avatar-eye right">
+                                                <!-- Eye Outline / Lashes -->
+                                                <path d="M107 82 Q115 76 123 82" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
+                                                <!-- Iris (Beautiful Blue) -->
+                                                <ellipse cx="115" cy="84" rx="5" ry="6" fill="#0284c7"/>
+                                                <!-- Pupil -->
+                                                <circle cx="115" cy="84" r="2.5" fill="#0f172a"/>
+                                                <!-- Highlights -->
+                                                <circle cx="113" cy="82" r="1.3" fill="#ffffff"/>
+                                                <circle cx="117" cy="86" r="0.7" fill="#ffffff"/>
+                                            </g>
+                                        </g>
+
+                                        <!-- Eyebrows (Gentle and friendly) -->
+                                        <path d="M76 73 Q85 67 92 72" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M108 72 Q115 67 124 73" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+
+                                        <!-- Nose -->
+                                        <path d="M98 92 Q100 95 102 92" fill="none" stroke="#fda4af" stroke-width="1.5" stroke-linecap="round"/>
+
+                                        <!-- Mouth (Smile by default, moves when speaking) -->
+                                        <path class="avatar-mouth" id="avatar-mouth" d="M92 105 Q100 113 108 105" fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round"/>
+
+                                        <!-- Hair (Beautiful Stylish Brown Hair) -->
+                                        <!-- Back Hair -->
+                                        <path d="M68 76 C58 96, 58 126, 64 141 C70 146, 75 116, 75 96" fill="#78350f"/>
+                                        <path d="M132 76 C142 96, 142 126, 136 141 C130 146, 125 116, 125 96" fill="#78350f"/>
+                                        <!-- Main Hair / Crown -->
+                                        <path d="M68 71 C60 36, 140 36, 132 71 C136 56, 125 46, 100 46 C75 46, 64 56, 68 71 Z" fill="#92400e"/>
+                                        <!-- Bangs / Front hair strands -->
+                                        <path d="M70 66 Q85 58 90 71" fill="none" stroke="#92400e" stroke-width="3.5" stroke-linecap="round"/>
+                                        <path d="M130 66 Q115 58 110 71" fill="none" stroke="#92400e" stroke-width="3.5" stroke-linecap="round"/>
+                                        <path d="M90 48 Q100 61 102 68" fill="none" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+
+                                        <!-- Headset (Online Teacher Style) -->
+                                        <!-- Headband -->
+                                        <path d="M71 60 A35 35 0 0 1 129 60" fill="none" stroke="#475569" stroke-width="2.5"/>
+                                        <!-- Ear piece (Left) -->
+                                        <rect x="66" y="70" width="6" height="16" rx="2.5" fill="#1e293b"/>
+                                        <!-- Mic Boom -->
+                                        <path d="M69 82 Q70 108 90 108" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round"/>
+                                        <!-- Mic Tip -->
+                                        <circle cx="90" cy="108" r="3" fill="#0f172a"/>
+                                    </g>
+
+                                    <!-- Gradients Definition -->
+                                    <defs>
+                                        <radialGradient id="avatar-bg-grad" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="var(--primary)"/>
+                                            <stop offset="100%" stop-color="transparent"/>
+                                        </radialGradient>
+                                    </defs>
+                                </svg>
+                                <div class="avatar-status">
+                                    <span class="status-indicator-dot" id="avatar-dot"></span>
+                                    <span class="status-indicator-text" id="avatar-status-text">Ngoại tuyến</span>
+                                </div>
+                            </div>
+
+                            <!-- Scroll Area cho phần nhận xét bài học ở dưới -->
+                            <div class="tutor-scroll-area">
+                                <div class="tutor-header" style="margin-top: 10px;">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                    <h3>Tutor's Notes (Nhận xét của Giáo viên)</h3>
+                                </div>
+                                <div class="tutor-content" id="tutor-notes-content">
+                                    <div class="empty-tutor-state">
+                                        <p>Hãy gửi một tin nhắn bằng tiếng Anh hoặc nói qua micro. AI sẽ phân tích và hiển thị sửa lỗi ngữ pháp, gợi ý từ vựng và cách nói tự nhiên hơn tại bảng này.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>Cấu Hình Giáo Viên AI 1:1</h2>
+                <button class="close-modal-btn" id="close-settings-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="gemini-api-key">Gemini API Key <span class="required">*</span></label>
+                    <input type="password" id="gemini-api-key" placeholder="Nhập API Key từ Google AI Studio...">
+                    <small>Mã khóa được lưu trữ an toàn ngay trên trình duyệt của bạn (Local Storage) và không bị gửi đi bất kỳ đâu khác ngoài máy chủ Google.</small>
+                    <a href="https://aistudio.google.com/" target="_blank" class="link-helper">Lấy khóa API Gemini miễn phí tại đây</a>
+                </div>
+
+                <div class="form-group">
+                    <label for="ai-level">Trình độ của bạn (Level)</label>
+                    <select id="ai-level">
+                        <option value="beginner" selected>Người mới bắt đầu (Beginner - Dễ học, nói chậm)</option>
+                        <option value="intermediate">Trung cấp (Intermediate - Phản xạ nhanh hơn)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ai-voice">Giọng nói Tiếng Anh (Text-to-Speech)</label>
+                    <select id="ai-voice">
+                        <option value="google-us">Mỹ (English US)</option>
+                        <option value="google-gb">Anh (English UK)</option>
+                        <option value="native">Giọng mặc định hệ thống</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="auto-speak-toggle" checked>
+                    <label for="auto-speak-toggle">Tự động phát âm phản hồi của AI (Auto-speak)</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="save-settings-btn">Lưu cấu hình</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script files -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
